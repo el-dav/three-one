@@ -1,1 +1,2 @@
-export const ASSET = 'asset';
+export * from './ThreeStory';
+export * from './Scene';

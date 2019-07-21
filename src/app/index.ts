@@ -1,1 +1,1 @@
-export { App } from './App.cmp';
+export { default as App } from './App';
