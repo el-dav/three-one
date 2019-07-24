@@ -1,6 +1,7 @@
 import React from 'react';
-import { Canvas } from 'react-three-fiber';
 import { styled } from 'theme';
+
+import { Canvas } from 'assets';
 
 const Container = styled.div`
   position: absolute;
@@ -9,29 +10,23 @@ const Container = styled.div`
   top: 0px;
 `;
 
-const StyledCanvas = styled(Canvas)`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  canvas {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-  }
-`;
+type Props = {
+  canvasProps?: React.ComponentProps<typeof Canvas>;
+};
 
-const LIGHT_COLOR = 0xffffff;
-const LIGHT_INTENSITY = 1;
-
-const ThreeStory: React.FC = ({ children }) => (
+const ThreeStory: React.FC<Props> = ({ children, canvasProps }) => (
   <Container>
-    <StyledCanvas>
-      {children}
-      <directionalLight
-        position={[-1, 2, 4]}
-        args={[LIGHT_COLOR, LIGHT_INTENSITY]}
+    <Canvas {...canvasProps}>
+      <ambientLight intensity={0.5} />
+      <spotLight
+        intensity={0.6}
+        position={[30, 30, 50]}
+        angle={0.2}
+        penumbra={1}
+        castShadow
       />
-    </StyledCanvas>
+      {children}
+    </Canvas>
   </Container>
 );
 
