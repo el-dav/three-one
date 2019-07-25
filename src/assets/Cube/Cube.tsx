@@ -16,7 +16,7 @@ const Cube: React.FC<Props> = ({
   children,
   dimensions = [1, 1, 1],
   color = 'red',
-  rotation = [90, 90, 0],
+  rotation = [0, 0, 0],
   meshProps,
   boxGeometryProps,
   meshPhongMaterialProps

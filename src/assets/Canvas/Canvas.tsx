@@ -2,7 +2,6 @@ import React from 'react';
 import { Canvas as ThreeCanvas } from 'react-three-fiber';
 
 import { WEBVR } from 'vr';
-import { Stars } from 'assets';
 
 type Props = React.ComponentProps<typeof ThreeCanvas>;
 
@@ -16,7 +15,6 @@ const Canvas: React.FC<Props> = ({ children, ...rest }) => {
       }}
       {...rest}
     >
-      <Stars />
       {children}
     </ThreeCanvas>
   );
