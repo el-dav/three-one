@@ -1,8 +1,7 @@
 import React from 'react';
 import { styled } from 'theme';
 
-import { Canvas, PerspectiveCamera, Stars } from 'assets';
-import { useRender } from 'react-three-fiber';
+import { Canvas, Stars } from 'assets';
 
 const Container = styled.div`
   position: absolute;
@@ -13,9 +12,10 @@ const Container = styled.div`
 
 type Props = {
   canvasProps?: React.ComponentProps<typeof Canvas>;
+  stars?: boolean;
 };
 
-const ThreeStory: React.FC<Props> = ({ children, canvasProps }) => {
+const ThreeStory: React.FC<Props> = ({ children, canvasProps, stars }) => {
   return (
     <Container>
       <Canvas
@@ -28,24 +28,16 @@ const ThreeStory: React.FC<Props> = ({ children, canvasProps }) => {
         }}
         {...canvasProps}
       >
-        <StoryContents>{children}</StoryContents>
+        <StoryContents stars={stars}>{children}</StoryContents>
       </Canvas>
     </Container>
   );
 };
 
-type RenderProps = {
-  camera: THREE.PerspectiveCamera;
-  gl: THREE.WebGLRenderer;
-  scene: THREE.Scene;
+type ContentsProps = {
+  stars?: boolean;
 };
-const StoryContents: React.FC = ({ children }) => {
-  useRender(({ camera, gl, scene }: RenderProps) => {
-    camera.position.setZ(camera.position.z + 0.001);
-    console.log(camera);
-    gl.render(scene, camera);
-  }, true);
-
+const StoryContents: React.FC<ContentsProps> = ({ children, stars = true }) => {
   return (
     <scene>
       <ambientLight intensity={0.5} />
@@ -56,8 +48,8 @@ const StoryContents: React.FC = ({ children }) => {
         penumbra={1}
         castShadow
       />
-      <Stars />
-      {children}
+      {stars && <Stars />}
+      <group position={[0, 1.5, -2]}>{children}</group>
     </scene>
   );
 };
