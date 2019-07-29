@@ -13,18 +13,10 @@ storiesOf('Cube', module).add('Default', () => {
     number,
     number
   ];
-  const rotation = object('rotation', [0, 0, 0]) as [number, number, number];
-  const position = object('position', [0, 1.5, -2]) as [number, number, number];
+  const rotation = object('rotation', [90, 90, 90]) as [number, number, number];
   return (
     <ThreeStory>
-      <Cube
-        color={color}
-        dimensions={dimensions}
-        rotation={rotation}
-        meshProps={{
-          position
-        }}
-      />
+      <Cube color={color} dimensions={dimensions} rotation={rotation} />
     </ThreeStory>
   );
 });
