@@ -15,7 +15,8 @@
     "jsx": "preserve",
     "baseUrl": "src",
     "isolatedModules": true,
-    "typeRoots": ["src/**/*.d.ts"]
+    "typeRoots": ["src/**/*.d.ts", "types/**/*.d.ts"],
+    "noImplicitAny": false
   },
-  "include": ["src", "src/**/*.d.ts", "types"]
+  "include": ["src", "src/**/*.d.ts", "types", "types/**/*.d.ts"]
 }

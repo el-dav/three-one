@@ -6,3 +6,6 @@ export * from './PerspectiveCamera';
 export * from './GltfModel';
 export * from './Cube';
 export * from './RotateAnimation';
+export * from './Plane';
+export * from './withLayout';
+export * from './ViveController';

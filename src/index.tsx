@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { App } from './app';
 import * as serviceWorker from './serviceWorker';
 
+import 'primitives';
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
