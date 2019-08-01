@@ -19,7 +19,7 @@ const FRAME_MULTIPLIER = 0.001;
 
 const RotateAnimation: React.FC<Props> = ({
   children,
-  speed = 1,
+  speed = 5,
   axis = Axis.X,
   reverse = false,
   ...groupProps
