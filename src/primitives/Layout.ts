@@ -37,6 +37,16 @@ export class Layout extends THREE.Group {
     this.yogaNode.setMargin(yoga.EDGE_ALL, value);
   }
 
+  set flexWrap(value) {
+    this.yogaNode.setFlexWrap(
+      {
+        wrap: yoga.WRAP_WRAP,
+        'no-wrap': yoga.WRAP_NO_WRAP,
+        'wrap-reverse': yoga.WRAP_WRAP_REVERSE
+      }[value]
+    );
+  }
+
   set flex(value) {
     this.yogaNode.setFlex(value);
   }

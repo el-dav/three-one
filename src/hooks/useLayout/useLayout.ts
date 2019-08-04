@@ -1,27 +1,10 @@
 import React from 'react';
 
-import { useStableCallback } from 'hooks';
-import { getYogaNode } from 'utils';
+import { LayoutContext } from 'assets';
 
-const useLayout = func => {
-  const ref = React.useRef();
-
-  const layout = useStableCallback(ev => {
-    func(ev);
-  });
-
-  React.useEffect(() => {
-    const yogaParent = getYogaNode(ref.current);
-    if (!yogaParent) return;
-    yogaParent.addEventListener('layout', layout);
-    return () => {
-      if (yogaParent) {
-        yogaParent.removeEventListener('layout', layout);
-      }
-    };
-  }, [layout]);
-
-  return ref;
+const useLayout = () => {
+  const layoutContext = React.useContext(LayoutContext);
+  return layoutContext.parentLayout;
 };
 
 export default useLayout;
