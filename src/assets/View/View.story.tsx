@@ -1,53 +1,52 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { number } from '@storybook/addon-knobs';
 
-import { ThreeStory, Plane, withLayout } from 'assets';
-import { useRootYogaNode } from 'hooks';
+import { yoga } from './yogaTypes';
 
-const SCALAR = 100;
+import { ThreeStory } from 'assets';
 
-const Fill = withLayout(({ color, left, bottom, width, height, ...rest }) => {
-  const pos3 = [width / 2, height / 2, 0];
-  console.log(color, left, bottom, width, height);
-  return (
-    <Plane
-      color={color}
-      width={width}
-      height={height}
-      meshProps={{
-        position: pos3
-      }}
-      {...rest}
-    />
-  );
-});
-
-const StoryContents = ({}) => {
-  const rootYogaNode = useRootYogaNode();
-  return (
-    <layout
-      scale={[1 / SCALAR, 1 / SCALAR, 1 / SCALAR]}
-      ref={rootYogaNode}
-      width={2 * SCALAR}
-      height={2 * SCALAR}
-      flexDirection="row"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <layout width={1 * SCALAR} height={1 * SCALAR} margin={10}>
-        <Fill color="blue" />
-      </layout>
-      <layout width={1 * SCALAR} height={1 * SCALAR}>
-        <Fill color="red" />
-      </layout>
-    </layout>
-  );
-};
+import View from './View';
 
 storiesOf('View', module).add('Default', () => {
+  const width = number('width', 1000);
+  const height = number('height', 1000);
+  const childNum = number('childNum', 2);
+
+  const childWidth = number('childWidth', 100);
+  const childHeight = number('childHeight', 100);
   return (
     <ThreeStory>
-      <StoryContents />
+      <View
+        layoutProps={{
+          width,
+          flexDirection: yoga.FLEX_DIRECTION_ROW,
+          alignItems: yoga.ALIGN_FLEX_START,
+          justifyContent: yoga.JUSTIFY_SPACE_BETWEEN,
+          flexWrap: yoga.WRAP_WRAP
+        }}
+        color="green"
+      >
+        <View
+          layoutProps={{
+            width: childWidth,
+            height: childHeight,
+            margin: [yoga.EDGE_ALL, 10]
+          }}
+          color="yellow"
+        />
+        {new Array(childNum).fill(0).map((_, i) => (
+          <View
+            key={i}
+            layoutProps={{
+              width: childWidth,
+              height: childHeight,
+              margin: [yoga.EDGE_ALL, 10]
+            }}
+            color="purple"
+          />
+        ))}
+      </View>
     </ThreeStory>
   );
 });
