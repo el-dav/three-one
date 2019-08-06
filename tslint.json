@@ -17,7 +17,8 @@
     "curly": [false],
     "no-implicit-dependencies": false,
     "member-access": false,
-    "no-submodule-imports": false
+    "no-submodule-imports": false,
+    "no-empty": [true, "allow-empty-functions"]
   },
   "linterOptions": {
     "exclude": ["**/node_modules/**/*.ts{,x}", "storybook-static/**/*"]

@@ -5,7 +5,10 @@
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
+    "@types/lodash": "^4.14.136",
     "emotion-theming": "^10.0.10",
+    "load-bmfont": "^1.4.0",
+    "lodash": "^4.17.15",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0",
@@ -13,6 +16,7 @@
     "react-three-fiber": "^2.2.12",
     "reselect": "^4.0.0",
     "three": "^0.106.2",
+    "three-bmfont-text": "^2.3.0",
     "three-gltf-loader": "^1.106.0",
     "typescript": "3.4.5",
     "yoga-layout-prebuilt": "^1.9.3"
@@ -54,7 +58,6 @@
     ]
   },
   "devDependencies": {
-    "@types/three": "^0.103.2",
     "@babel/core": "^7.4.4",
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-knobs": "^5.0.11",
@@ -69,6 +72,7 @@
     "@types/storybook__addon-actions": "^3.4.2",
     "@types/storybook__addon-knobs": "^5.0.0",
     "@types/storybook__react": "^4.0.1",
+    "@types/three": "^0.103.2",
     "@types/yoga-layout": "^1.9.1",
     "babel-loader": "^8.0.5",
     "husky": "^2.1.0",

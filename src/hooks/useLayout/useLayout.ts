@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { LayoutContext } from 'assets';
+import { LayoutContext } from 'viewAssets';
 
 const useLayout = () => {
-  const layoutContext = React.useContext(LayoutContext);
-  return layoutContext.parentLayout;
+  const { parentLayout, zIndex } = React.useContext(LayoutContext);
+  return { ...parentLayout, zIndex };
 };
 
 export default useLayout;
