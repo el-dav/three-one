@@ -2,7 +2,6 @@ import React from 'react';
 import { styled } from 'theme';
 
 import { Canvas, Stars } from 'assets';
-import 'primitives';
 
 const Container = styled.div`
   position: absolute;

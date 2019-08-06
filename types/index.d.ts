@@ -15,6 +15,12 @@ declare global {
       layout: ReactThreeFiber.Object3DNode<Layout>;
     }
   }
+
+  declare namespace NodeJS {
+    interface Global {
+      THREE: any;
+    }
+  }
 }
 
 declare namespace JSX {
@@ -23,6 +29,12 @@ declare namespace JSX {
     orbitControls: ReactThreeFiber.Node<OrbitControls>;
     viveController: ReactThreeFiber.Object3DNode<ViveController>;
     layout: ReactThreeFiber.Object3DNode<Layout>;
+  }
+}
+
+declare namespace NodeJS {
+  interface Global {
+    THREE: any;
   }
 }
 
