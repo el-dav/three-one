@@ -8,3 +8,7 @@ export * from './Cube';
 export * from './RotateAnimation';
 export * from './Plane';
 export * from './ViveController';
+export * from './Text';
+export * from './Line';
+export * from './ControllerContext';
+export * from './Sphere';

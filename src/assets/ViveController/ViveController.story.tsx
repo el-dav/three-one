@@ -2,14 +2,17 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { ThreeStory } from 'assets';
+import { FlatButton } from 'viewAssets';
+import { Hand } from 'types';
 
-import ViveController, { HAND } from './ViveController';
+import ViveController from './ViveController';
 
 storiesOf('ViveController', module).add('Default', () => {
   return (
-    <ThreeStory>
-      <ViveController hand={HAND.LEFT} />
-      <ViveController hand={HAND.RIGHT} />
+    <ThreeStory stars={false} changeOrigin={false}>
+      <ViveController hand={Hand.LEFT} />
+      <ViveController hand={Hand.RIGHT} />
+      <FlatButton label="Click Me" />
     </ThreeStory>
   );
 });

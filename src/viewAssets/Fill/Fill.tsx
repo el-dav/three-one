@@ -2,12 +2,13 @@ import React from 'react';
 
 import { useLayout } from 'hooks';
 import { Plane } from 'assets';
+import { Targetable } from 'types';
 
-type Props = {
+type Props = Targetable<{
   color: string | number;
-};
+}>;
 
-const AnimatedFill: React.FC<Props> = ({ children, color }) => {
+const AnimatedFill: React.FC<Props> = ({ children, color, innerRef }) => {
   const { width, height } = useLayout();
 
   const meshProps = React.useMemo(
@@ -18,7 +19,13 @@ const AnimatedFill: React.FC<Props> = ({ children, color }) => {
   );
 
   return (
-    <Plane color={color} width={width} height={height} meshProps={meshProps}>
+    <Plane
+      color={color}
+      width={width}
+      height={height}
+      meshProps={meshProps}
+      innerRef={innerRef}
+    >
       {children}
     </Plane>
   );

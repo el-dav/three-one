@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'theme';
 
-import { Canvas, Stars } from 'assets';
+import { Canvas, Stars, ControllerProvider } from 'assets';
 
 const Container = styled.div`
   position: absolute;
@@ -13,9 +13,15 @@ const Container = styled.div`
 type Props = {
   canvasProps?: React.ComponentProps<typeof Canvas>;
   stars?: boolean;
+  changeOrigin?: boolean;
 };
 
-const ThreeStory: React.FC<Props> = ({ children, canvasProps, stars }) => {
+const ThreeStory: React.FC<Props> = ({
+  children,
+  canvasProps,
+  stars,
+  changeOrigin
+}) => {
   return (
     <Container>
       <Canvas
@@ -23,12 +29,13 @@ const ThreeStory: React.FC<Props> = ({ children, canvasProps, stars }) => {
           fov: 75,
           aspect: 2,
           near: 0.1,
-          far: 1000,
-          position: [2, 2, 2]
+          far: 1000
         }}
         {...canvasProps}
       >
-        <StoryContents stars={stars}>{children}</StoryContents>
+        <StoryContents stars={stars} changeOrigin={changeOrigin}>
+          {children}
+        </StoryContents>
       </Canvas>
     </Container>
   );
@@ -36,10 +43,15 @@ const ThreeStory: React.FC<Props> = ({ children, canvasProps, stars }) => {
 
 type ContentsProps = {
   stars?: boolean;
+  changeOrigin?: boolean;
 };
-const StoryContents: React.FC<ContentsProps> = ({ children, stars = true }) => {
+const StoryContents: React.FC<ContentsProps> = ({
+  children,
+  stars = true,
+  changeOrigin = true
+}) => {
   return (
-    <scene>
+    <ControllerProvider>
       <ambientLight intensity={0.5} />
       <spotLight
         intensity={0.6}
@@ -49,8 +61,10 @@ const StoryContents: React.FC<ContentsProps> = ({ children, stars = true }) => {
         castShadow
       />
       {stars && <Stars />}
-      <group position={[0, 1.5, -2]}>{children}</group>
-    </scene>
+      <group position={changeOrigin ? [0, 1.5, -2] : [0, 0, 0]}>
+        {children}
+      </group>
+    </ControllerProvider>
   );
 };
 
