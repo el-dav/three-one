@@ -34,10 +34,10 @@ const Text: React.FC<Props> = ({
   scale = 1
 }) => {
   const width = originalWidth * SCALE;
-  const [geometry, setGeometry] = React.useState(null);
-  const [material, setMaterial] = React.useState(null);
-  const [fontData, setFontData] = React.useState(null);
-  const [layout, setLayout] = React.useState(null);
+  const [geometry, setGeometry] = React.useState<any>(null);
+  const [material, setMaterial] = React.useState<any>(null);
+  const [fontData, setFontData] = React.useState<any>(null);
+  const [layout, setLayout] = React.useState<any>(null);
 
   React.useEffect(() => {
     loadFont(fontPath, (err, font) => {
@@ -48,15 +48,20 @@ const Text: React.FC<Props> = ({
         text
       });
 
-      // the resulting layout has metrics and bounds
-      // console.log(newGeometry.layout.height);
-      // console.log(newGeometry.layout.descender);
-
       setGeometry(newGeometry);
       setLayout(newGeometry.layout);
       setFontData(font);
     });
-  }, [setGeometry, setLayout, fontPath, align, text, width, setFontData]);
+  }, [
+    setGeometry,
+    setLayout,
+    fontPath,
+    align,
+    text,
+    width,
+    setFontData,
+    scale
+  ]);
 
   React.useEffect(() => {
     if (geometry) {

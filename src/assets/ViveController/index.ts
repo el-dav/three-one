@@ -1,1 +1,1 @@
-export { default as ViveController, HAND } from './ViveController';
+export { default as ViveController } from './ViveController';

@@ -2,7 +2,9 @@ import React, { FC } from 'react';
 import { ReactThreeFiber } from 'react-three-fiber/types/three';
 import * as THREE from 'three';
 
-type Props = {
+import { Targetable } from 'types';
+
+type Props = Targetable<{
   width?: number;
   height?: number;
   color?: string | number;
@@ -13,7 +15,7 @@ type Props = {
     THREE.MeshPhongMaterial,
     [THREE.MeshPhongMaterialParameters]
   >;
-};
+}>;
 
 const Plane: FC<Props> = ({
   width = 1,
@@ -23,10 +25,11 @@ const Plane: FC<Props> = ({
   meshProps,
   planeGeometryProps,
   meshPhongMaterialProps,
+  innerRef,
   children
 }) => {
   return (
-    <mesh {...meshProps}>
+    <mesh ref={innerRef} {...meshProps}>
       <planeGeometry
         attach="geometry"
         args={[width, height, 1]}

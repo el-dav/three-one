@@ -1,42 +1,45 @@
 import React, { FC } from 'react';
-import { ViveController as ThreeViveController } from 'three/examples/jsm/vr/ViveController';
-import { extend, useRender } from 'react-three-fiber';
-import { ReactThreeFiber } from 'react-three-fiber/types/three';
 
-import { Cube } from 'assets';
+import { Cube, Line, ControllerContext, Sphere } from 'assets';
+import { Hand } from 'types';
+import { useController } from 'hooks';
 
-extend({ ViveController: ThreeViveController });
+const CUBE_SIZE = 0.1;
+const SPHERE_SIZE = 0.05;
 
-export enum HAND {
-  LEFT = 0,
-  RIGHT = 1
-}
-
-type Props = ReactThreeFiber.Object3DNode<ThreeViveController> & {
-  hand?: HAND;
+type Props = {
+  hand?: Hand;
 };
 
-const ViveController: FC<Props> = ({
-  hand = HAND.RIGHT,
-  children,
-  ...rest
-}) => {
-  const ref = React.useRef<ThreeViveController>();
+const ViveController: FC<Props> = ({ hand = Hand.RIGHT, children }) => {
+  const { controller, rayCaster } = useController(hand);
+  const { activeTargetList } = React.useContext(ControllerContext);
+  const activeTarget = activeTargetList[hand];
 
-  useRender(() => {
-    if (ref && ref.current) {
-      ref.current.update();
-    }
-  });
+  const lineVertices = React.useMemo(() => {
+    const distance = activeTarget ? activeTarget.distance : 10;
+    return [[0, 0, 0], [0, 0, -distance]] as Array<[number, number, number]>;
+  }, [activeTarget]);
 
-  return (
-    <group position={[0, 0.7, 0]}>
-      <viveController ref={ref} args={[hand]} {...rest}>
-        <Cube dimensions={[0.1, 0.1, 0.1]} />
+  if (controller && rayCaster) {
+    return (
+      <primitive object={controller}>
+        <Cube dimensions={[CUBE_SIZE, CUBE_SIZE, CUBE_SIZE]} />
+        <Line vertices={lineVertices} color="red" />
+        {activeTarget && (
+          <Sphere
+            radius={SPHERE_SIZE}
+            color="white"
+            meshProps={{
+              position: [0, 0, -activeTarget.distance]
+            }}
+          />
+        )}
         {children}
-      </viveController>
-    </group>
-  );
+      </primitive>
+    );
+  }
+  return null;
 };
 
 export default ViveController;
