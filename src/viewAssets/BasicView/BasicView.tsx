@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactThreeFiber } from 'react-three-fiber/types/three';
 
-import { LayoutProps } from 'types';
+import { LayoutProperties } from 'types';
 import { useLayout } from 'hooks';
 import { View } from 'viewAssets';
 
@@ -18,8 +18,8 @@ const ViewGroup: React.FC<ViewGroupProps> = ({ children, props }) => {
   );
 };
 
-type Props = LayoutProps & {
-  groupProps: ReactThreeFiber.Object3DNode<THREE.Group>;
+type Props = LayoutProperties & {
+  groupProps?: ReactThreeFiber.Object3DNode<THREE.Group>;
 };
 
 const BasicView: React.FC<Props> = ({

@@ -11,7 +11,7 @@ export type Controller = any;
 export type ControllerTarget = THREE.Object3D;
 
 export type Targetable<T> = T & {
-  innerRef: React.RefObject<any>;
+  innerRef?: React.RefObject<any>;
 };
 
 export type TargetConfig = {

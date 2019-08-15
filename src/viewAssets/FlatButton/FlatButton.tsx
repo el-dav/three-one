@@ -44,7 +44,7 @@ const FlatButton: React.FC<Props> = ({
     }),
     []
   );
-  const { ref, pointerState, selectState } = useTarget(targetConfig);
+  const { ref, hovered, selected } = useTarget(targetConfig);
   return (
     <BasicView
       minHeight={0.2 * VIEW_SCALE}
@@ -56,8 +56,11 @@ const FlatButton: React.FC<Props> = ({
     >
       <Fill innerRef={ref} color="blue" />
       <BasicView width={width}>
-        <Label label={pointerState} />
-        <Label label={selectState} />
+        <Label
+          label={`${hovered ? 'hovered' : 'not hovered'} \n ${
+            selected ? 'selected' : 'not selected'
+          }`}
+        />
       </BasicView>
       {children}
     </BasicView>
