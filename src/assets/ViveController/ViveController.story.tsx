@@ -12,7 +12,9 @@ storiesOf('ViveController', module).add('Default', () => {
     <ThreeStory stars={false} changeOrigin={false}>
       <ViveController hand={Hand.LEFT} />
       <ViveController hand={Hand.RIGHT} />
-      <FlatButton label="Click Me" />
+      <group position-z={-2} position-y={1}>
+        <FlatButton label="Click Me" />
+      </group>
     </ThreeStory>
   );
 });
